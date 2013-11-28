@@ -4,7 +4,8 @@ Copyright 2013, Patrick J. Franz
 
 from fabric.api import sudo
 
-
+# Most of this is informed by the following thread:
+# http://www.raspberrypi.org/phpBB3/viewtopic.php?f=66&t=57001&p=434804
 def cleanDistribution():
     sudo('apt-get -y update')
     sudo('apt-get -y upgrade')
