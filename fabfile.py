@@ -3,6 +3,7 @@ Copyright 2013, Patrick J. Franz
 """
 
 from fabric.api import sudo
+from fabric.api import run
 
 # Most of this is informed by the following thread:
 # http://www.raspberrypi.org/phpBB3/viewtopic.php?f=66&t=57001&p=434804
@@ -61,12 +62,24 @@ def cleanDistribution():
         '/usr/share/themes',
         '/usr/share/kde4',
         '/usr/share/images/*',
-        '/home/pi/python_games']
+        '/home/pi/python_games',
+        '/home/pi/Desktop']
 
     for d in unneededDirs:
         sudo("rm -rf %s" % d, warn_only=True)
 
 
 def installPython():
+    """
+    Install Python 2.7 only w/ pip support.
+    """
+
     sudo('apt-get -y install python2.7')
-    sudo('ln -s /usr/bin/python2.7 /usr/local/bin/python')
+    sudo('ln -s /usr/bin/python2.7 /usr/local/bin/python', warn_only=True)
+
+    sudo('apt-get -y install python-pip')
+    sudo('apt-get -y install python2.7-dev')
+
+
+def installServer():
+    sudo('pip install flask')
