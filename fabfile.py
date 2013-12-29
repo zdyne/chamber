@@ -83,3 +83,8 @@ def installPython():
 
 def installServer():
     sudo('pip install flask')
+    sudo('pip install flask-wtf')
+    sudo('pip install Flask-SQLAlchemy')
+    sudo('pip install SQLAlchemy-migrate')
+    sudo('pip install flask-login')
+    sudo('pip install flask-bcrypt')
